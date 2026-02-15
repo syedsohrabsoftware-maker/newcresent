@@ -88,35 +88,57 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Links Column 1 */}
-          <div className="lg:col-span-2 space-y-8">
-            <h4 className="text-white text-sm font-black uppercase tracking-[4px] border-l-4 border-[#621CFF] pl-4">Discover</h4>
-            <ul className="space-y-4">
-              {['About Us', 'Academic Path', 'Admission Info', 'Campus Life', 'Our Gallery'].map((item) => (
-                <li key={item}>
-                  <Link href="#" className="text-slate-500 hover:text-[#ECFF1C] text-[15px] font-bold transition-all flex items-center gap-2 group">
-                    <div className="w-1 h-1 bg-slate-700 group-hover:w-3 group-hover:bg-[#ECFF1C] transition-all"></div>
-                    {item}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          
 
-          {/* Links Column 2 */}
-          <div className="lg:col-span-2 space-y-8">
-            <h4 className="text-white text-sm font-black uppercase tracking-[4px] border-l-4 border-[#ECFF1C] pl-4">Resources</h4>
-            <ul className="space-y-4">
-              {['Online Fee', 'Student Login', 'Staff Portal', 'Latest News', 'Contact Us'].map((item) => (
-                <li key={item}>
-                  <Link href="#" className="text-slate-500 hover:text-[#621CFF] text-[15px] font-bold transition-all flex items-center gap-2 group">
-                    <div className="w-1 h-1 bg-slate-700 group-hover:w-3 group-hover:bg-[#621CFF] transition-all"></div>
-                    {item}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+         {/* Links Column 1: Discover */}
+<div className="lg:col-span-2 space-y-8">
+  <h4 className="text-white text-sm font-black uppercase tracking-[4px] border-l-4 border-[#621CFF] pl-4">Discover</h4>
+  <ul className="space-y-4">
+    {[
+      { name: 'About Us', path: '/about' },
+      { name: 'Academic Path', path: '/academics' },
+      { name: 'Admission Info', path: '/admissions' },
+      { name: 'Campus Life', path: '/campus-life' },
+      { name: 'Our Gallery', path: '/gallery' }
+    ].map((link) => (
+      <li key={link.name}>
+        <Link href={link.path} className="text-slate-500 hover:text-[#ECFF1C] text-[15px] font-bold transition-all flex items-center gap-2 group">
+          <div className="w-1 h-1 bg-slate-700 group-hover:w-3 group-hover:bg-[#ECFF1C] transition-all"></div>
+          {link.name}
+        </Link>
+      </li>
+    ))}
+  </ul>
+</div>
+
+{/* Links Column 2: Resources */}
+<div className="lg:col-span-2 space-y-8">
+  <h4 className="text-white text-sm font-black uppercase tracking-[4px] border-l-4 border-[#ECFF1C] pl-4">Resources</h4>
+  <ul className="space-y-4">
+    {[
+      { name: 'Online Fee', path: '/fees' },
+      { 
+        name: 'Student Login', 
+        path: 'https://scholavue.id/public/student_login.php', 
+        external: true 
+      },
+      { 
+        name: 'Staff Portal', 
+        path: 'https://scholavue.id/public/login.php', 
+        external: true 
+      },         // Update hua
+      { name: 'Latest News', path: '/news' },
+      { name: 'Contact Us', path: '/contact' }
+    ].map((link) => (
+      <li key={link.name}>
+        <Link href={link.path} className="text-slate-500 hover:text-[#621CFF] text-[15px] font-bold transition-all flex items-center gap-2 group">
+          <div className="w-1 h-1 bg-slate-700 group-hover:w-3 group-hover:bg-[#621CFF] transition-all"></div>
+          {link.name}
+        </Link>
+      </li>
+    ))}
+  </ul>
+</div>
 
           {/* Contact & Map Card */}
           <div className="lg:col-span-3 space-y-6">
