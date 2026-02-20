@@ -1,12 +1,14 @@
 import { MetadataRoute } from 'next'
 
 export default function robots(): MetadataRoute.Robots {
+  const baseUrl = 'https://newcrescentschool.in'
+
   return {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: '/private/', // Agar koi private folder ho toh use mana kar sakte ho
+      disallow: ['/admin/', '/api/'], // Private folders ko hide rakhein
     },
-    sitemap: 'https://newcrescent.edu/sitemap.xml', // Domain change kar lena
+    sitemap: `${baseUrl}/sitemap.xml`, // Sitemap ka link hamesha .xml hi rahega
   }
 }
