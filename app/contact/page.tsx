@@ -142,13 +142,15 @@ export default function ContactPage() {
            
            <div className="rounded-[60px] overflow-hidden h-[600px] border-[12px] border-slate-50 shadow-2xl relative">
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d112444.64687274075!2d76.9535738870198!3d28.11921389270597!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d404099411649%3A0xc6c768916868c6c7!2sPinangwan%2C%20Haryana!5e0!3m2!1sen!2sin!4v1708810000000!5m2!1sen!2sin" 
-                width="100%" 
-                height="100%" 
-                style={{ border: 0 }} 
-                allowFullScreen={true} 
-                loading="lazy" 
-              />
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d671.3267542786591!2d77.11102277175719!3d27.922645457045068!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3972d728344107cd%3A0x93f9553fb1e8cb1c!2sNEW%20CRESCENT%20PUBLIC%20SCHOOL%20REHPUWA%20(NCPS)!5e1!3m2!1sen!2sin!4v1771616334052!5m2!1sen!2sin" 
+  width="100%" 
+  height="100%" 
+  style={{ border: 0, minHeight: "350px" }} 
+  allowFullScreen={true} 
+  loading="lazy" 
+  referrerPolicy="no-referrer-when-downgrade"
+  title="NCPS Satellite Map"
+/>
            </div>
         </div>
 

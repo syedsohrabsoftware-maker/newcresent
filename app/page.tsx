@@ -1,5 +1,6 @@
 "use client";
 import Hero from "./components/Hero";
+import HindiExcellence from "./components/HindiExcellence";
 import Features from "./components/Features";
 import Gallery from "./components/Gallery";
 import Testimonials from "./components/Testimonials";
@@ -18,7 +19,9 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-white">
       <Hero />
+    
       <Features />
+      <HindiExcellence />
       <Gallery />
       <Testimonials />
       <CTA />
