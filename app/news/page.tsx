@@ -1,121 +1,41 @@
-"use client";
-import React from "react";
-import { 
-  Newspaper, Calendar, ArrowRight, 
-  Search, Tag, Share2, Sparkles, 
-  TrendingUp, Clock
-} from "lucide-react";
-import Link from "next/link";
+// app/news/page.tsx
+import NewsClient from "./NewsClient";
+import { Metadata } from "next";
 
-export default function NewsPage() {
-  const blogs = [
-    {
-      id: 1,
-      title: "Admissions Open for Session 2026-27",
-      date: "Feb 15, 2026",
-      category: "Admissions",
-      desc: "NCPS Pinangwan ne naye session ke liye registration shuru kar diye hain. Janiye kaise apply karein.",
-      image: "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?q=80&w=1000&auto=format&fit=crop"
-    },
-    {
-      id: 2,
-      title: "Annual Sports Meet Winners 2025",
-      date: "Jan 20, 2026",
-      category: "Sports",
-      desc: "Hamare bacchon ne district level par Cricket aur Athletics mein gold medals jeete hain.",
-      image: "https://images.unsplash.com/photo-1526676037777-05a232554f77?q=80&w=1000&auto=format&fit=crop"
-    },
-    {
-      id: 3,
-      title: "New Digital Lab Inauguration",
-      date: "Jan 05, 2026",
-      category: "Campus",
-      desc: "Latest AI-ready computer lab ab students ke liye open hai. Coding classes shuru ho chuki hain.",
-      image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1000&auto=format&fit=crop"
-    }
-  ];
+export const metadata: Metadata = {
+  title: "School News & Updates | NCPS Pinangwan Journal",
+  description: "New Crescent Public School (NCPS) ki latest khabrein. Admissions 2026-27, sports winners, aur campus events ki puri jankari Hinglish mein.",
+  keywords: [
+    "NCPS School News", "Admissions 2026-27 Updates", 
+    "Pinangwan school events", "Mewat school sports news",
+    "Latest education articles Mewat", "NCPS Notice Board"
+  ],
+  alternates: { canonical: "https://newcrescentschool.in/news" },
+  openGraph: {
+    title: "NCPS Journal | Latest School Updates",
+    description: "Stay updated with the latest happenings at New Crescent Public School.",
+    images: [{ url: '/building1.jpg' }],
+  }
+};
 
+export default function Page() {
   return (
-    <main className="pt-40 pb-20 bg-white min-h-screen selection:bg-[#621CFF]/20">
-      
-      {/* --- SEO OPTIMIZED BACKGROUND --- */}
-      <div className="fixed inset-0 pointer-events-none -z-10">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#621CFF]/5 blur-[150px] rounded-full" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#ECFF1C]/10 blur-[120px] rounded-full" />
-      </div>
-
-      <div className="max-w-[1440px] mx-auto px-6 md:px-16">
-        
-        {/* --- HEADER --- */}
-        <div className="max-w-4xl mb-24 space-y-8">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#150447] text-white rounded-full shadow-2xl">
-            <TrendingUp size={14} className="text-[#ECFF1C]" />
-            <span className="text-[10px] font-black uppercase tracking-[3px]">NCPS Insights & Updates</span>
-          </div>
-          <h1 className="text-6xl md:text-[120px] font-black text-[#150447] tracking-tighter uppercase leading-[0.85]">
-            NEWS & <br /> <span className="text-[#621CFF]">ARTICLES.</span>
-          </h1>
-          <p className="text-xl text-slate-500 font-bold max-w-xl border-l-8 border-[#ECFF1C] pl-6 py-2">
-            School ki har badi khabar aur education se judi jankari ab ek hi jagah.
-          </p>
-        </div>
-
-        {/* --- NEWS GRID --- */}
-        <div className="grid md:grid-cols-3 gap-8 mb-24">
-          {blogs.map((post, i) => (
-            <div key={i} className="group bg-white rounded-[40px] border border-slate-100 overflow-hidden hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.15)] transition-all duration-700">
-               {/* Blog Image */}
-               <div className="relative h-64 overflow-hidden">
-                  <img src={post.image} alt={post.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
-                  <div className="absolute top-6 left-6 bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] font-black text-[#621CFF] uppercase tracking-widest shadow-xl">
-                    {post.category}
-                  </div>
-               </div>
-
-               {/* Content */}
-               <div className="p-10 space-y-6">
-                  <div className="flex items-center gap-3 text-slate-400 font-bold text-[10px] uppercase tracking-widest">
-                    <Calendar size={14} /> {post.date}
-                  </div>
-                  <h3 className="text-2xl font-black text-[#150447] tracking-tighter uppercase leading-tight group-hover:text-[#621CFF] transition-colors italic">
-                    {post.title}
-                  </h3>
-                  <p className="text-slate-500 font-bold text-sm leading-relaxed">
-                    {post.desc}
-                  </p>
-                  <Link href={`/news/${post.id}`} className="inline-flex items-center gap-3 text-[#150447] font-black text-[11px] uppercase tracking-[3px] group/btn">
-                    Read Article <ArrowRight size={16} className="group-hover/btn:translate-x-2 transition-transform" />
-                  </Link>
-               </div>
-            </div>
-          ))}
-        </div>
-
-        {/* --- SEO NEWSLETTER: FINTECH STYLE --- */}
-        <div className="bg-[#150447] rounded-[60px] p-10 md:p-20 text-center relative overflow-hidden group shadow-[0_50px_100px_-20px_rgba(21,4,71,0.5)]">
-           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-[shimmer_3s_infinite]" />
-           <div className="relative z-10 space-y-10">
-              <Sparkles className="mx-auto text-[#ECFF1C] animate-pulse" size={48} />
-              <h2 className="text-4xl md:text-7xl font-black text-white tracking-tighter uppercase italic leading-none">
-                Subscribe to Our <br /> <span className="text-[#ECFF1C]">Weekly Journal.</span>
-              </h2>
-              <div className="max-w-2xl mx-auto flex flex-col md:flex-row gap-4">
-                 <input type="email" placeholder="Your School Email" className="flex-1 bg-white/10 border-2 border-white/10 rounded-3xl px-8 py-6 text-white font-bold outline-none focus:border-[#621CFF] transition-all" />
-                 <button className="bg-[#621CFF] text-white px-12 py-6 rounded-3xl font-black uppercase tracking-[4px] hover:bg-[#ECFF1C] hover:text-[#150447] transition-all active:scale-95">
-                    Subscribe
-                 </button>
-              </div>
-              <p className="text-slate-400 text-[9px] font-black uppercase tracking-[4px]">Join 500+ parents getting regular updates directly.</p>
-           </div>
-        </div>
-
-      </div>
-
-      <style jsx global>{`
-        @keyframes shimmer {
-          100% { transform: translateX(100%); }
-        }
-      `}</style>
-    </main>
+    <>
+      {/* NewsArticle Schema for Google News Visibility */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "NewsArticle",
+            "headline": "Admissions Open for Session 2026-27 at NCPS",
+            "image": ["https://images.unsplash.com/photo-1546410531-bb4caa6b424d"],
+            "datePublished": "2026-02-15T08:00:00+08:00",
+            "author": { "@type": "Organization", "name": "New Crescent Public School" }
+          })
+        }}
+      />
+      <NewsClient />
+    </>
   );
 }

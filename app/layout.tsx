@@ -3,30 +3,27 @@ import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import WhatsAppWidget from "./components/WhatsAppWidget";
-import StudentInquiryPopup from "./components/StudentInquiryPopup";
 
 export const metadata: Metadata = {
-  title: "New Crescent Public School | Best School in Nuh, Punhana & Pinangwan",
+  // --- YE HAI MASTER SETTING ---
+  title: {
+    default: "New Crescent Public School | Best School in Nuh, Punhana & Pinangwan",
+    template: "%s | New Crescent Public School" // Har page ka title iske aage lag jayega
+  },
   description: "NCPS is the leading digital school in Mewat. Best CBSE education in Punhana, Pinangwan, Ferozepur Jhirka, Nuh, Palwal, Hatheen & Sikrawa Road.",
   keywords: [
-    "New Crescent Public School", 
-    "NCPS Nuh Mewat", 
-    "Best school in Punhana", 
-    "Top school in Pinangwan",
-    "Schools in Ferozepur Jhirka",
-    "Best CBSE school in Nuh",
-    "Private schools in Palwal",
-    "Schools in Hatheen Haryana",
-    "Digital School Rehepuwa",
-    "NCPS Sikrawa Road",
-    "Schools in Sikwara Mewat",
-    "English Medium School Punhana",
-    "Top rated schools in Mewat",
-    "NCPS Admission 2026-27"
+    "New Crescent Public School", "NCPS Nuh Mewat", "Best school in Punhana", 
+    "Top school in Pinangwan", "Schools in Ferozepur Jhirka", "Best CBSE school in Nuh",
+    "Digital School Rehepuwa", "NCPS Sikrawa Road", "NCPS Admission 2026-27"
   ],
   alternates: {
     canonical: "https://newcrescentschool.in",
   },
+  // Biology Hub Favicon aur social images ke liye
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  }
 };
 
 export default function RootLayout({
@@ -37,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-white antialiased">
-        {/* --- SEO SCHEMA MARKUP START --- */}
+        {/* --- GLOBAL SCHOOL SCHEMA --- */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -45,36 +42,34 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "School",
               "name": "New Crescent Public School",
+              "alternateName": "NCPS",
+              "url": "https://newcrescentschool.in",
+              "logo": "https://newcrescentschool.in/logo.png",
               "address": {
                 "@type": "PostalAddress",
+                "streetAddress": "Sikrawa Road, Village Rehpua",
                 "addressLocality": "Pinangwan",
                 "addressRegion": "Haryana",
                 "postalCode": "122508",
-                "addressCountry": "IN",
-                "streetAddress": "Sikrawa Road, Village Rehpua"
+                "addressCountry": "IN"
               },
-              "url": "https://newcrescentschool.in",
               "telephone": "+919813020259",
-              "image": "https://newcrescentschool.in/logo.png",
-              "geo": {
-                "@type": "GeoCoordinates",
-                "latitude": "27.9015", 
-                "longitude": "77.1235"
-              }
+              "sameAs": [
+                "https://facebook.com/your-school-page",
+                "https://instagram.com/your-school-page"
+              ]
             })
           }}
         />
-        {/* --- SEO SCHEMA MARKUP END --- */}
 
         <Header />
 
-        <main className="min-h-screen pt-20">
+        <main className="min-h-screen">
           {children}
         </main>
 
         <Footer />
         <WhatsAppWidget />
-        <StudentInquiryPopup />
       </body>
     </html>
   );

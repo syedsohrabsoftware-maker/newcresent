@@ -1,5 +1,32 @@
 import { ShieldCheck, Zap, Bus, CreditCard, Star, ArrowRight, CheckCircle, Phone } from "lucide-react";
 import Link from "next/link";
+import { Metadata } from "next";
+
+// --- DYNAMIC METADATA ENGINE ---
+// Ye function Google ko har slug ke liye alag title aur desc dikhayega
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  
+  const titles: any = {
+    "schools-with-transport-in-mewat": "Safe School Transport in Mewat | NCPS GPS-Enabled Buses",
+    "best-science-stream-school-in-pinanagwan-punhana-mewat": "Best Digital & Smart Class School in Nuh | NCPS Modern Learning",
+    "affordable-fee-structure-mewat": "Affordable Fee Structure | Quality CBSE Education in Mewat",
+  };
+
+  const descriptions: any = {
+    "schools-with-transport-in-mewat": "New Crescent Public School (NCPS) provides safe, GPS-tracked bus facilities in Punhana, Nuh & Mewat.",
+    "smart-class-education-nuh": "Mewat's first fully digital school with interactive smart boards and 3D labs at NCPS.",
+    "affordable-fee-structure-mewat": "Get high-tech CBSE education at affordable rates. NCPS Mewat offers premium facilities in your budget.",
+  };
+
+  return {
+    title: titles[slug] || "Excellence in Education | NCPS",
+    description: descriptions[slug] || "Join New Crescent Public School for a bright future.",
+    alternates: {
+      canonical: `https://newcrescentschool.in/authority/${slug}`,
+    }
+  };
+}
 
 export default async function AuthorityPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -18,7 +45,7 @@ export default async function AuthorityPage({ params }: { params: Promise<{ slug
       title: "Smart Class & Digital Learning in Nuh",
       hindiTitle: "नूंह का पहला पूरी तरह डिजिटल स्कूल",
       desc: "Experience the future of education with interactive smart boards, 3D labs, and digital libraries.",
-      hindiDesc: "पुराने तरीकों को छोड़िए! NCPS लाया है डिजिटल बोर्ड और स्मार्ट लैब्स, जो पढ़ाई को बनाते हैं आसान और दिलचस्प।",
+      hindiDesc: "पुराने तरीकों को छोड़िए! NCPS लाया है डिजिटल बोर्ड और स्मार्ट लैब्स, जो पढ़ाई को बनाते हैं आसान और दिलचस्प।",
       icon: Zap,
       features: ["3D Interactive Learning", "Digital Coding Labs", "Smart Boards", "Online Study Portal"]
     },
@@ -51,7 +78,7 @@ export default async function AuthorityPage({ params }: { params: Promise<{ slug
           <h1 className="text-4xl md:text-7xl font-black text-white leading-tight tracking-tighter mb-8">
             {data.hindiTitle.toUpperCase()} <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ECFF1C] via-white to-[#621CFF]">
-               BY NCPS NUH
+                BY NCPS NUH
             </span>
           </h1>
           <p className="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-medium">

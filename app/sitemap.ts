@@ -4,7 +4,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://newcrescentschool.in'
   const currentDate = new Date().toISOString().split('T')[0]
 
-  // 1. Static Core Pages (Aapke sidebar folders ke mutabiq)
+  // 1. Core Navigation Pages (High Priority)
   const staticRoutes = [
     '',
     '/about',
@@ -13,10 +13,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/apply',
     '/contact',
     '/gallery',
-    '/news',            // Folder detected from sidebar
-    '/campus',          // Folder detected from sidebar
+    '/news',
+    '/campus',
     '/best-schools-city-wise',
-    '/top-5-schools-in-mewat',
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: currentDate,
@@ -24,39 +23,44 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route === '' ? 1.0 : 0.8,
   }))
 
-  // 2. Hyper-Local SEO Pages (Mewat, Palwal & Alwar region)
+  // 2. Brand Authority Page (Aapka NCPS Rehpua Biology Hub)
+  const brandRoutes = [
+    '/school/new-crescent-public-school-rehpua',
+  ].map((route) => ({
+    url: `${baseUrl}${route}`,
+    lastModified: currentDate,
+    changeFrequency: 'monthly' as const,
+    priority: 1.0, 
+  }))
+
+  // 3. Authority URL Slugs (Jo humne finalize kiye hain)
+  const authoritySlugs = [
+    'top-5-schools-in-mewat',
+    'schools-with-transport-in-mewat',
+    'smart-class-education-nuh',
+    'affordable-fee-structure-mewat',
+    'best-biology-school-in-mewat' // Aapki specialized identity
+  ]
+
+  const authorityRoutes = authoritySlugs.map((slug) => ({
+    url: `${baseUrl}/authority/${slug}`,
+    lastModified: currentDate,
+    changeFrequency: 'monthly' as const,
+    priority: 0.9, // Inhe 0.9 priority di hai taaki rankings me boost mile
+  }))
+
+  // 4. Hyper-Local Location Pages
   const locations = [
-    'punhana', 
-    'pinangwan', 
-    'nuh', 
-    'firojpur-jhirka', 
-    'palwal', 
-    'hatheen', 
-    'sikrawa', 
-    'hodal', 
-    'alwar',
-    'tauru'
+    'punhana', 'pinangwan', 'nuh', 'firojpur-jhirka', 
+    'palwal', 'hatheen', 'sikrawa', 'hodal', 'alwar', 'tauru'
   ]
 
   const locationRoutes = locations.map((city) => ({
     url: `${baseUrl}/best-school-near-me/${city}`,
     lastModified: currentDate,
     changeFrequency: 'weekly' as const,
-    priority: 0.9, 
+    priority: 0.8, 
   }))
 
-  // 3. Authority & Special SEO Pages (Folder matching)
-  const authorityRoutes = [
-    '/schools-with-transport-in-mewat',
-    '/smart-class-nuh',      // Corrected folder path from your sidebar
-    '/authority/affordable-fee-structure-mewat',
-  ].map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: currentDate,
-    changeFrequency: 'monthly' as const,
-    priority: 0.7,
-  }))
-
-  // Saare routes ko ek master sitemap mein merge karna
-  return [...staticRoutes, ...locationRoutes, ...authorityRoutes]
+  return [...staticRoutes, ...brandRoutes, ...authorityRoutes, ...locationRoutes]
 }
