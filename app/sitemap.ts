@@ -16,6 +16,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/news',
     '/campus',
     '/best-schools-city-wise',
+    '/school-list-mewat-haryana', // <-- Naya Page Added
+    '/private-school-in-mewat',   // <-- Naya Page Added
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: currentDate,
@@ -33,20 +35,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 1.0, 
   }))
 
-  // 3. Authority URL Slugs (Jo humne finalize kiye hain)
+  // 3. Authority URL Slugs
   const authoritySlugs = [
     'top-5-schools-in-mewat',
     'schools-with-transport-in-mewat',
     'smart-class-education-nuh',
     'affordable-fee-structure-mewat',
-    'best-biology-school-in-mewat' // Aapki specialized identity
+    'best-biology-school-in-mewat'
   ]
 
   const authorityRoutes = authoritySlugs.map((slug) => ({
     url: `${baseUrl}/authority/${slug}`,
     lastModified: currentDate,
     changeFrequency: 'monthly' as const,
-    priority: 0.9, // Inhe 0.9 priority di hai taaki rankings me boost mile
+    priority: 0.9, 
   }))
 
   // 4. Hyper-Local Location Pages
